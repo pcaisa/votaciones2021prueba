@@ -51,7 +51,7 @@ echo "</div>";
 echo "</td>";
 echo "<td>";
 echo "<div class=\"form-group col-lg-4\">";
-echo "<a href=\"index.html?id=<?php echo $row['cod_estudiante'] ?>\" class=\"btn btn-danger\">Eliminar</a>";
+echo "<a href=\"index.php?id=<?php echo $row['cod_estudiante'] ?>\" class=\"btn btn-danger\">Eliminar</a>";
 echo "</div>";
 echo "</td>";
 echo "</tr>";
