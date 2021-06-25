@@ -1,86 +1,63 @@
-<?php
-echo "<!DOCTYPE html>";
-echo "<html lang=\"es\">";
-echo "";
-echo "<head>";
-echo "<title>Dinamicos</title>";
-echo "<link href=\"http://netdna.bootstrapcdn.com/bootstrap/3.0.3/css/bootstrap.min.css\" rel=\"stylesheet\">";
-echo "<link href=\"http://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/validationEngine.jquery.css\" rel=\"stylesheet\">";
-echo "<script src=\"http://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js\"></script>";
-echo "<script src=\"http://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/jquery.validationEngine.min.js\"></script>";
-echo "<script src=\"http://cdnjs.cloudflare.com/ajax/libs/jQuery-Validation-Engine/2.6.4/languages/jquery.validationEngine-es.js\"></script>";
-echo "<style>";
-echo ".top-buffer {";
-echo "margin-top: 20px;";
-echo "}";
-echo "</style>";
-echo "</head>";
-echo "";
-echo "<body>";
-echo "<div id=\"container \">";
-echo "<div class=\"row-fluid top-buffer\">";
-echo "<div class=\"col-lg-6 col-lg-offset-3 text-center\">";
-echo "<form id=\"miform\" method=\"post\" name=\"miform\" action=\"guarda.php\">";
-echo "";
-echo "";
-echo "";
-echo "";
-echo "";
-echo "";
-echo "";
-echo "<table id=\"tblprod\" class=\"table table-hover table-bordered\">";
-echo "<thead>";
-echo "<tr>";
-echo "<th>id</th>";
-echo "<th>Nombre</th>";
-echo "<th>eliminar</th>";
-echo "";
-echo "</tr>";
-echo "</thead>";
-echo "<tbody>";
-echo "<tr>";
-echo "<td>1</td>";
-echo "<td>";
-echo "<div class=\"form-group col-lg-4\">";
-echo "<input class=\"form-control validate[required]\" name=\"nombre[]\" />";
-echo "</div>";
-echo "<div class=\"form-group col-lg-4\">";
-echo "<input class=\"form-control validate[required]\" type=\"number\" name=\"limonesusados[]\" min=\"1\" max=\"5\"/>";
-echo "";
-echo "</div>";
-echo "</td>";
-echo "<td>";
-echo "<div class=\"form-group col-lg-4\">";
-echo "<a href=\"index.php?id=<?php echo $row['cod_estudiante'] ?>\" class=\"btn btn-danger\">Eliminar</a>";
-echo "</div>";
-echo "</td>";
-echo "</tr>";
-echo "</tbody>";
-echo "</table>";
-echo "<button id=\"btnadd\" class=\"btn btn-primary\">Agregar Nuevo</button>";
-echo "";
-echo "</form>";
-echo "</div>";
-echo "</div>";
-echo "</div>";
-echo "";
-echo "<script type=\"text/javascript\">";
-echo "$(function() {";
-echo "var count = 1;";
-echo "jQuery(\"#miform\").validationEngine({";
-echo "promptPosition: \"centerRight:0,-5\"";
-echo "});";
-echo "";
-echo "$(document).on(\"click\", \"#btnadd\", function(event) {";
-echo "count++;";
-echo "$('#tblprod tr:last').after('<tr><td>' + count + '</td><td><div class=\"form-group col-lg-4\"><input class=\"form-control validate[required]\" name=\" nombre[]\" /></div><div class=\"form-group col-lg-4\"><input class=\"form-control validate[required]\" type=\"number\" name=\"limonesusados[]\" min=\"1\" max=\"5\"/> </div></td></tr>');";
-echo "event.preventDefault();";
-echo "";
-echo "});";
-echo "";
-echo "});";
-echo "</script>";
-echo "";
-echo "</body>";
-echo "";
-echo "</html>";
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title> PAGINA ALUMNO</title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link href="css/style.css" rel="stylesheet">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+        
+    </head>
+    <body>
+            <div class="container mt-5">
+                    <div class="row"> 
+                        
+                        <div class="col-md-3">
+                            <h1>Ingrese datos</h1>
+                                <form action="insertar.php" method="POST">
+
+                                    <input type="text" class="form-control mb-3" name="cod_estudiante" placeholder="cod estudiante">
+                                    <input type="text" class="form-control mb-3" name="dni" placeholder="Dni">
+                                    <input type="text" class="form-control mb-3" name="nombres" placeholder="Nombres">
+                                    <input type="text" class="form-control mb-3" name="apellidos" placeholder="Apellidos">
+                                    
+                                    <input type="submit" class="btn btn-primary">
+                                </form>
+                        </div>
+
+                        <div class="col-md-8">
+                            <table class="table" >
+                                <thead class="table-success table-striped" >
+                                    <tr>
+                                        <th>Codigo</th>
+                                        <th>Dni</th>
+                                        <th>Nombres</th>
+                                        <th>pellidos</th>
+                                        <th></th>
+                                        <th></th>
+                                    </tr>
+                                </thead>
+
+                                <tbody>
+                                        <?php
+                                            while($row=mysqli_fetch_array($query)){
+                                        ?>
+                                            <tr>
+                                                <th><?php  echo $row['cod_estudiante']?></th>
+                                                <th><?php  echo $row['dni']?></th>
+                                                <th><?php  echo $row['nombres']?></th>
+                                                <th><?php  echo $row['apellidos']?></th>    
+                                                <th><a href="actualizar.php?id=<?php echo $row['cod_estudiante'] ?>" class="btn btn-info">Editar</a></th>
+                                                <th><a href="delete.php?id=<?php echo $row['cod_estudiante'] ?>" class="btn btn-danger">Eliminar</a></th>                                        
+                                            </tr>
+                                        <?php 
+                                            }
+                                        ?>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>  
+            </div>
+    </body>
+</html>
