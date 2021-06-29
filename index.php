@@ -2,7 +2,7 @@
 <!DOCTYPE html>
 <html lang="en">
     <head>
-        <title> PAGINA ALUMNO</title>
+        <title>SISTEMA DE VOTACIONES </title>
         <meta charset="UTF-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <link href="css/style.css" rel="stylesheet">
@@ -14,48 +14,110 @@
                     <div class="row"> 
                         
                         <div class="col-md-3">
-                            <h1>Ingrese datos</h1>
-                                <form action="insertar.php" method="POST">
-
-                                    <input type="text" class="form-control mb-3" name="cod_estudiante" placeholder="cod estudiante">
-                                    <input type="text" class="form-control mb-3" name="dni" placeholder="Dni">
-                                    <input type="text" class="form-control mb-3" name="nombres" placeholder="Nombres">
-                                    <input type="text" class="form-control mb-3" name="apellidos" placeholder="Apellidos">
-                                    
-                                    <input type="submit" class="btn btn-primary">
-                                </form>
+                            <h1>AGREGAR NUEVO CANDIDATO</h1>
+                                <form method="post" action="<?php echo $_SERVER['PHP_SELF']; ?>">
+ 
+<input type="text" name="name"><br>
+<input class="form-control validate[required]" type="number" name="limonesusados" min="1" max="5"/>
+ 
+<input type="submit" class="btn btn-primary" name="submit" value="Submit Form"><br>
+ 
+</form>
+                                   
+                               
                         </div>
 
                         <div class="col-md-8">
                             <table class="table" >
                                 <thead class="table-success table-striped" >
                                     <tr>
-                                        <th>Codigo</th>
-                                        <th>Dni</th>
-                                        <th>Nombres</th>
-                                        <th>pellidos</th>
+                                        <th>CANDIDATOS</th>
+                                        <th>VOTOS</th>
                                         <th></th>
                                         <th></th>
                                     </tr>
                                 </thead>
 
                                 <tbody>
-                                        <?php
-                                            while($row=mysqli_fetch_array($query)){
-                                        ?>
+                                        
                                             <tr>
-                                                <th><?php  echo $row['cod_estudiante']?></th>
-                                                <th><?php  echo $row['dni']?></th>
-                                                <th><?php  echo $row['nombres']?></th>
-                                                <th><?php  echo $row['apellidos']?></th>    
-                                                <th><a href="actualizar.php?id=<?php echo $row['cod_estudiante'] ?>" class="btn btn-info">Editar</a></th>
-                                                <th><a href="delete.php?id=<?php echo $row['cod_estudiante'] ?>" class="btn btn-danger">Eliminar</a></th>                                        
-                                            </tr>
-                                        <?php 
-                                            }
-                                        ?>
+                                                <th><?php
+ 
+if(isset($_POST['submit']))
+{
+$name = $_POST['name'];
+ 
+echo "<b> $name </b>";
+ 
+}
+
+?></th>
+                                                <th><?php
+ 
+if(isset($_POST['submit']))
+{
+$n = $_POST['limonesusados'];
+ 
+echo "<b> $n </b>";
+ 
+}
+
+?>
+                                                
+                                                <th><a  href="alumno.php" class="btn btn-danger">Eliminar</a></th>                                        
+                                            
+											</tr>
+											
+											  <tr>
+                                                <th><?php
+ 
+echo "<b>Jose </b>";
+
+?></th>
+                                                <th><?php
+ 
+echo "<b>2 </b>";
+
+?>
+                                                
+                                                <th><a  href="alumno.php" class="btn btn-danger">Eliminar</a></th>                                        
+                                            
+											</tr>
+											<tr>
+                                                <th><?php
+ 
+echo "<b>Pablo </b>";
+
+?></th>
+                                                <th><?php
+ 
+echo "<b>6 </b>";
+
+?>
+                                                
+                                                <th><a  href="alumno.php" class="btn btn-danger">Eliminar</a></th>                                        
+                                            
+											</tr>
+											
+											<tr>
+                                                <th><?php
+ 
+echo "<b>David  </b>";
+
+?></th>
+                                                <th><?php
+ 
+echo "<b>7</b>";
+
+?>
+                                                
+                                                <th><a  href="alumno.php" class="btn btn-danger">Eliminar</a></th>                                        
+                                            
+											</tr>
+                                        
                                 </tbody>
                             </table>
+							
                         </div>
                     </div>  
             </div>
